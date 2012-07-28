@@ -5,7 +5,12 @@
  *
  *	zhou_zhou@wistron.com Jul'25 2012
  */
+#include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
+#define N 1000000
+#define RAND_UP 999999.0
+//one sorting
 int partition(int *data,int left,int right)
 {
 	int t = 0;
@@ -23,13 +28,14 @@ int partition(int *data,int left,int right)
 	return left;
 }
 
+//recursion
 void sort(int *data,int left,int right)        
 {
 	if(left >= right)
 		return ;
 	int midd = 0;
 	midd = partition(data,left,right);
-	sort(data,left,midd-1);		//recursion递归
+	sort(data,left,midd-1);	
 	sort(data,midd+1,right);
 }
 
@@ -40,11 +46,30 @@ void fast_sort(int *data,int n)
 
 int main()
 {
-	int i;
-	int data[]={19,65,32,5,56,74,96,62};
+	int i,n;
+	int data[N];
+	clock_t start, finish;  
+	double  duration;  
+	srand((unsigned)time(NULL));
+
+	////get random numbers between 1 and RAND_UP
+	for(i = 0; i < N; i++)
+	{
+		data[i] = 1+(int)(RAND_UP*rand()/(RAND_MAX+1.0));	
+		//printf("data[%d]=%d\n",i,data[i]);
+	}	
+
+	printf("total numbers: %ld\n",sizeof(data)/sizeof(int));
+	start = clock();
 	fast_sort(data,sizeof(data)/sizeof(int));
-	for( i = 0 ; i < sizeof(data)/sizeof(int); i++)
-		printf("%d ",data[i]);
-	printf("\n");
+	finish = clock();  
+	duration = (double)(finish - start) / CLOCKS_PER_SEC;  
+
+ 	while(i!=0){
+		printf("%8d",data[N-(i--)]);
+		if(i%10==0)
+			printf("\n");				
+	}
+	printf( "\nsort time is %f seconds\n", duration );  
 	return 0;
 }
