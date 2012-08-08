@@ -29,6 +29,7 @@ Llist createList()
 	return L;
 }
 
+/*insert node in the end of the list*/
 Llist insertNode(Llist L,int num)
 {
 	Llist s, p=L;
@@ -46,6 +47,7 @@ Llist insertNode(Llist L,int num)
 	return L;
 }
 
+/*delete node by number*/
 Llist deleteNode(Llist L, int num)
 {
 	Llist p = L->next, q = L;
@@ -65,7 +67,7 @@ void printList(Llist L)
 	Llist p;
 	p = L->next;
 	while(p){
-		printf("%d\n",p->number);
+		printf("%d, wait for more menber\n",p->number);
 		p = p->next;
 	}
 }
