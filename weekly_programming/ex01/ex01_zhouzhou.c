@@ -51,6 +51,8 @@ int main()
 	int *data = NULL;
 	clock_t start, finish;  
 	double  duration;  
+	FILE *fpR, *fpW;	
+
 	data = (int *)malloc(N*sizeof(int)); 
 	if(NULL == data){
 		printf("malloc error");
@@ -58,8 +60,6 @@ int main()
 	}
 	memset(data,0,N);
 
-	FILE *fpR, *fpW;	
-	char line[8];
 	printf("read number from numBase.txt...\n");
 	if((fpR = fopen("numBase.txt","r")) == NULL){
 		printf("cant't open numBase.txt");
@@ -87,7 +87,9 @@ int main()
 		fclose(fpW);
 	}
 	printf("Finish!!!\n");
+
 	free(data);
 	data=NULL;
+
 	return 0;
 }

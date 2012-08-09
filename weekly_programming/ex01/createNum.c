@@ -35,7 +35,6 @@ void printNumBase()
 	int i,j=0;
 	int num[N];
 	FILE *fp;	
-	char line[8];
 	if((fp = fopen("numBase.txt","r")) == NULL){
 		printf("cant't open numBase.txt");
 		exit(0);
